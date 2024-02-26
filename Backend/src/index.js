@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 
 import cors from 'cors';
 import { userRouter } from "./routes/users.js";
+import { recipesRouter } from "./routes/recipes.js";
 
 
 
