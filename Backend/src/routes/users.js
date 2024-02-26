@@ -28,12 +28,14 @@ router.post("/login",async(req,res)=>{
     const user = await userModel.findOne( {username} );
 
     if(!user){
-        return res.json({message:"No such user"})
+        return res.status(401).json({message:"No such user"})
+        
     }
 
     const isPasswordValidv= await bcrypt.compare(password, user.password);
     if(!isPasswordValidv){
-        return res.json({message: "Username or Password is Incorrect"})
+        return res.status(401).json({message:"Wrong Password"})
+        
     }
 
     const token =jwt.sign({id: user._id},"secret")
